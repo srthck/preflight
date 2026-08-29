@@ -1,0 +1,105 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "preflight"
+version = "0.1.0"
+description = "PreFlight — Know what breaks before you deploy."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "PreFlight Engineering" }]
+keywords = ["static-analysis", "deployment", "dependency-graph", "devops"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Testing",
+    "Topic :: System :: Systems Administration",
+    "Typing :: Typed",
+]
+dependencies = [
+    "pydantic>=2.0,<3.0",
+    "networkx>=3.0,<4.0",
+    "tree-sitter>=0.23,<0.24",
+    "tree-sitter-python>=0.23,<0.24",
+    "tree-sitter-kotlin>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0",
+    "ruff>=0.3",
+    "mypy>=1.8",
+    "networkx-stubs",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+# ---------------------------------------------------------------------------
+# pytest
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["-v", "--tb=short"]
+# Ensure deterministic test ordering within each file.
+# (Install pytest-randomly if random ordering is later desired for hardening.)
+
+# ---------------------------------------------------------------------------
+# Ruff
+# ---------------------------------------------------------------------------
+[tool.ruff]
+src = ["src"]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+    "ANN", # flake8-annotations (type hints)
+    "N",   # pep8-naming
+    "SIM", # flake8-simplify
+]
+ignore = [
+    "ANN101",  # missing type annotation for self
+    "ANN102",  # missing type annotation for cls
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Test files: allow longer lines for fluent builder chains with long entity IDs.
+"tests/**" = ["E501", "SIM105"]
+"tests/unit/test_rollback_truth.py" = ["E501", "SIM105", "ANN"]
+"tests/unit/test_day8_decision.py" = ["E501", "SIM105", "ANN"]
+# Scripts: E402 is intentional (sys.path must be set before package imports).
+# SIM105/ANN: debug/utility scripts don't need the same rigor as production code.
+"scripts/**" = ["E402", "SIM105", "ANN"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["preflight"]
+
+# ---------------------------------------------------------------------------
+# mypy
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["src/preflight"]
+exclude = ["tests", "scripts", "fixtures"]
+
+[[tool.mypy.overrides]]
+module = ["tree_sitter_python", "tree_sitter_kotlin"]
+ignore_missing_imports = true

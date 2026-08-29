@@ -1,0 +1,38 @@
+openapi: 3.0.0
+info:
+  title: ProfileAPI
+  version: "1.0"
+  description: >
+    Demo Commerce ProfileAPI contract fixture (remediated release). Mirrors
+    the remediated profile_api.py — phone_number has been removed from the
+    response.
+paths:
+  /profile/{user_id}:
+    get:
+      operationId: getProfile
+      summary: Fetch a user profile. phone_number is no longer included.
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: The requested user profile.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - user_id
+                  - name
+                  - email
+                properties:
+                  user_id:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+components: {}

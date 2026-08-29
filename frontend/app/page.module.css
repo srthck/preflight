@@ -1,0 +1,709 @@
+/* ==========================================================================
+   PRE·FLIGHT — editorial, restrained, evidence-first design system.
+   Every color/spacing/type value below traces to the token set in globals.css.
+   ========================================================================== */
+
+.page{min-height:100vh;background:var(--base);color:var(--primary)}
+
+/* ---- Global navigation: minimal, three zones ---- */
+.header{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,72px);border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:9px;font:600 14px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em;color:var(--primary)}
+.brand i{color:var(--secondary);font-style:normal}
+.mark{display:grid;place-items:center;width:26px;height:26px;color:var(--base);background:var(--primary);border-radius:6px}
+.nav{display:flex;align-items:center;gap:28px}
+.navLinks{display:flex;gap:24px}
+.navLinks a{color:var(--secondary);text-decoration:none;font:11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;transition:color .18s var(--ease)}
+.navLinks a:hover{color:var(--primary)}
+.navRight{display:flex;align-items:center;gap:20px}
+.enginePill{display:flex;align-items:center;gap:7px;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;color:var(--secondary)}
+.enginePill b{color:var(--safe-fg);font-size:14px;line-height:0}
+.navRight a{color:var(--secondary);display:flex}
+.navRight a:hover{color:var(--primary)}
+
+/* ---- Hero: almost nothing, one action ---- */
+.hero{max-width:900px;margin:auto;padding:clamp(72px,14vw,140px) clamp(20px,5vw,72px) 96px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.eyebrow,.kicker,.panelTitle small,.caseBadge,.meta,.heroRule{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase}
+.eyebrow{color:var(--secondary);display:flex;gap:9px;align-items:center}
+.pulse{width:6px;height:6px;background:var(--safe-fg);border-radius:50%;box-shadow:0 0 0 4px var(--safe-bg)}
+.hero h1{font-size:clamp(40px,7vw,76px);font-weight:600;line-height:1.02;letter-spacing:-.02em;margin:22px 0 0}
+.hero h1 em{font-style:normal;color:var(--secondary)}
+.hero p{max-width:560px;color:var(--secondary);font-size:18px;line-height:1.6;margin:22px 0 0}
+.actions{display:flex;gap:12px;margin:36px 0 0}
+.primary,.ghost{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:6px;padding:14px 22px;font-weight:600;font-size:14px;cursor:pointer;transition:transform .18s var(--ease),opacity .18s var(--ease),background .18s var(--ease)}
+.primary{background:var(--primary);color:var(--base)}
+.primary:hover:not(:disabled){transform:translateY(-1px)}
+.primary:disabled{opacity:.55;cursor:wait}
+.ghost{color:var(--secondary);background:transparent;border:1px solid var(--border-strong)}
+.ghost:hover{color:var(--primary);border-color:rgba(255,255,255,.16)}
+.heroRule{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;color:var(--tertiary);margin-top:64px}
+.heroRule span{padding-right:18px;border-right:1px solid var(--border)}
+.heroRule span:last-child{border-right:0;padding-right:0}
+
+/* ---- Workspace / section rhythm ---- */
+.workspace{max-width:1180px;margin:auto;padding:0 clamp(20px,5vw,72px) 96px}
+.sectionHead{display:flex;align-items:flex-end;justify-content:space-between;border-top:1px solid var(--border);padding-top:48px;margin:0 0 24px}
+.sectionHead:first-child{border-top:0;padding-top:0}
+.kicker{color:var(--secondary)}
+.sectionHead h2{margin:6px 0 0;font-size:30px;font-weight:500;letter-spacing:-.02em}
+.caseBadge{color:var(--primary);background:var(--surface);border:1px solid var(--border-strong);padding:8px 10px;border-radius:5px}
+
+/* ---- Empty / error states ---- */
+.empty,.panel,.error{border:1px solid var(--border);background:var(--surface);border-radius:10px}
+.empty{padding:72px 24px;text-align:center;display:grid;place-items:center;gap:14px}
+.emptyIcon{color:var(--secondary)}
+.empty h3{margin:0;font-weight:500;font-size:19px}
+.empty p{color:var(--secondary);max-width:480px;margin:0;line-height:1.6;font-size:15px}
+.error{display:flex;gap:12px;padding:18px;border-color:var(--danger-bd);color:var(--danger-fg)}
+.error div{display:grid;gap:5px}
+.error strong{font-size:14px;font-weight:600;letter-spacing:.02em}
+.error span,.error small{color:#c39a9a}
+.error button{margin-left:auto;align-self:start;background:transparent;border:0;color:inherit;cursor:pointer}
+.errorInline{color:var(--danger-fg);font-size:12px;margin:8px 0 0}
+
+/* ---- Staged analysis sequence ---- */
+.stagedList{display:grid;gap:0;max-width:420px;margin:8px auto 0;text-align:left}
+.stagedItem{display:flex;align-items:center;gap:12px;padding:11px 2px;font:12px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.04em;color:var(--tertiary);opacity:.5;transition:opacity .5s var(--ease),color .5s var(--ease)}
+.stagedItem.stagedActive{opacity:1;color:var(--primary)}
+.stagedItem.stagedDone{opacity:.85;color:var(--secondary)}
+.stagedDot{width:6px;height:6px;border-radius:50%;background:var(--tertiary);flex-shrink:0;transition:background .4s var(--ease),box-shadow .4s var(--ease)}
+.stagedActive .stagedDot{background:var(--primary);box-shadow:0 0 0 4px rgba(255,255,255,.06)}
+.stagedDone .stagedDot{background:var(--safe-fg)}
+.stagedIndex{color:var(--tertiary);width:18px}
+
+/* ---- Report container ---- */
+.report{display:grid;gap:0;animation:reportIn .5s var(--ease)}
+@keyframes reportIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.panel{padding:26px;margin-top:0}
+.panelTitle{display:flex;justify-content:space-between;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.panelTitle>span{font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:7px}
+.panelTitle small{color:var(--tertiary);text-transform:none;letter-spacing:.01em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.dangerText{color:var(--danger-fg)!important}
+.advisory{color:var(--safe-fg)!important}
+.panel p{color:var(--secondary);line-height:1.6}
+.panel code{color:var(--primary)}
+
+/* ---- Command center / verdict ---- */
+.commandCenter{display:grid;gap:16px;margin-bottom:0}
+.scenarioSwitch{display:flex;gap:8px;flex-wrap:wrap}
+.scenarioButton{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:6px;border:1px solid var(--border-strong);background:transparent;color:var(--secondary);font:11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.04em;cursor:pointer;transition:all .18s var(--ease)}
+.scenarioButton:disabled{cursor:wait;opacity:.55}
+.scenarioButtonActive{background:var(--primary);border-color:var(--primary);color:var(--base)}
+.scenarioFixture{margin:0;color:var(--tertiary);font-size:12px}
+.scenarioFixture code{color:var(--secondary)}
+.verdictBlock{padding:clamp(28px,6vw,56px) clamp(24px,5vw,56px);display:flex;justify-content:space-between;gap:28px;align-items:center;border:1px solid var(--border);background:var(--surface);border-radius:12px;flex-wrap:wrap}
+.verdictLeft{min-width:260px;flex:1}
+.tone_danger{border-color:var(--danger-bd)}
+.tone_warn{border-color:var(--warn-bd)}
+.tone_safe{border-color:var(--safe-bd)}
+.tone_unknown{border-color:var(--border-strong)}
+.decisionText{font-size:clamp(32px,6vw,60px);font-weight:600;letter-spacing:-.02em;line-height:1.02;margin:10px 0}
+.tone_danger .decisionText{color:var(--danger-fg)}
+.tone_warn .decisionText{color:var(--warn-fg)}
+.tone_safe .decisionText{color:var(--safe-fg)}
+.tone_unknown .decisionText{color:var(--primary)}
+.summary{color:var(--secondary);max-width:560px;line-height:1.6;margin:0;font-size:16px}
+.scoreBlock{display:flex;align-items:baseline;gap:10px;flex-shrink:0}
+.scoreBlock strong{font-size:68px;font-weight:600;line-height:1;letter-spacing:-.02em;color:var(--primary)}
+.tone_danger .scoreBlock strong{color:var(--danger-fg)}
+.tone_safe .scoreBlock strong{color:var(--safe-fg)}
+.scoreBlock span{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tertiary);letter-spacing:.08em}
+.metaRow{display:flex;gap:24px;flex-wrap:wrap;color:var(--secondary);padding:0 2px;font:11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}
+.metaRow code{color:var(--primary)}
+.online{color:var(--safe-fg)}
+.copyBtn{background:transparent;border:0;color:var(--tertiary);cursor:pointer;vertical-align:middle;padding:2px;transition:color .18s var(--ease)}
+.copyBtn:hover{color:var(--primary)}
+
+/* ---- shared tone text/chip helpers ---- */
+.textTone_danger{color:var(--danger-fg)!important}
+.textTone_warn{color:var(--warn-fg)!important}
+.textTone_safe{color:var(--safe-fg)!important}
+.textTone_unknown{color:var(--secondary)!important}
+.sevTone_danger{background:var(--danger-bg);color:var(--danger-fg)}
+.sevTone_warn{background:var(--warn-bg);color:var(--warn-fg)}
+.sevTone_safe{background:var(--safe-bg);color:var(--safe-fg)}
+.sevTone_unknown{background:var(--unknown-bg);color:var(--unknown-fg)}
+.severity{height:min-content;padding:4px 6px;border-radius:4px;font:10px ui-monospace,SFMono-Regular,Menlo,monospace}
+.chip{display:inline-flex;padding:4px 8px;border-radius:5px;background:var(--unknown-bg);border:1px solid var(--border-strong);color:var(--secondary);font:10px ui-monospace,SFMono-Regular,Menlo,monospace}
+.chipRow{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.chip_added,.chip_safe,.chip_proven{background:var(--safe-bg);color:var(--safe-fg);border:1px solid var(--safe-bd)}
+.chip_removed,.chip_breaking,.chip_danger{background:var(--danger-bg);color:var(--danger-fg);border:1px solid var(--danger-bd)}
+.chip_changed,.chip_caution,.chip_inferred{background:var(--warn-bg);color:var(--warn-fg);border:1px solid var(--warn-bd)}
+.chip_unchanged,.chip_unknown{background:var(--unknown-bg);color:var(--unknown-fg);border:1px solid var(--unknown-bd)}
+.chip_added,.chip_removed,.chip_changed,.chip_unchanged,.chip_safe,.chip_breaking,.chip_caution,.chip_unknown,.chip_proven,.chip_inferred{display:inline-flex;align-items:center;justify-content:center;padding:3px 8px;border-radius:5px;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;height:min-content}
+
+/* ---- disclosure / progressive detail ---- */
+.disclosure{display:inline-flex;align-items:center;gap:6px;background:transparent;border:0;color:var(--primary);cursor:pointer;font:11px ui-monospace,SFMono-Regular,Menlo,monospace;padding:10px 0 0;letter-spacing:.05em;text-transform:uppercase}
+.disclosure:hover{color:var(--secondary)}
+.rot180{transform:rotate(180deg);transition:transform .25s var(--ease)}
+.rot270{transform:rotate(-90deg)}
+.calcTrace{border-top:1px solid var(--border);margin-top:14px;padding-top:14px;display:grid;gap:9px;animation:reveal .3s var(--ease)}
+@keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.calcRow{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--secondary)}
+.calcRow code{color:var(--primary)}
+.calcTotal{border-top:1px solid var(--border);padding-top:9px;color:var(--primary);font-weight:600}
+.risk{display:grid;grid-template-columns:1fr 1.7fr 34px;align-items:center;gap:10px;margin:16px 0}
+.risk span{font-size:13px;color:var(--primary)}
+.risk small{display:block;color:var(--tertiary);font:10px ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:3px;text-transform:none;letter-spacing:0}
+.risk>div{height:4px;background:var(--border-strong);border-radius:8px;overflow:hidden}
+.risk i{height:100%;display:block;background:var(--primary);border-radius:inherit;transition:width .6s var(--ease)}
+.risk strong{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;text-align:right;color:var(--primary)}
+.formula{border-top:1px solid var(--border);margin-top:18px;padding-top:13px;color:var(--tertiary);font:11px ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* ---- Blast radius graph ---- */
+.emptyNote{color:var(--tertiary);font-size:13px;line-height:1.6;margin:6px 0}
+.graphScroll{overflow-x:auto;padding-bottom:6px;margin:8px 0 16px}
+.graphFlow{display:flex;gap:28px;align-items:flex-start;min-width:min-content;padding:6px 2px}
+.graphColumn{display:grid;gap:10px;min-width:180px}
+.graphColumnLabel{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tertiary);letter-spacing:.08em;white-space:nowrap;text-transform:uppercase}
+.graphNode{display:grid;gap:4px;text-align:left;padding:12px 13px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface-raised);color:var(--primary);cursor:default;font-family:inherit;transition:border-color .18s var(--ease),background .18s var(--ease)}
+.graphNode span{font-size:12px;font-weight:500;word-break:break-word}
+.graphNode small{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tertiary)}
+.graphNode em{font:9px ui-monospace,SFMono-Regular,Menlo,monospace;font-style:normal;color:var(--tertiary);justify-self:start;background:var(--base);padding:2px 6px;border-radius:4px;border:1px solid var(--border)}
+.graphNodeRoot{border-color:var(--danger-bd);background:var(--danger-bg);color:var(--danger-fg)}
+.graphNodeDirect{border-color:var(--warn-bd);cursor:pointer}
+.graphNodeDirect:hover{border-color:var(--warn-fg)}
+.graphNodeIndirect{cursor:pointer}
+.graphNodeIndirect:hover{border-color:var(--border-strong);background:#101014}
+.graphNodeSelected{outline:2px solid var(--primary);outline-offset:1px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--tertiary);font-size:11px;align-items:center;margin-top:6px}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.legendDotRoot{background:var(--danger-fg)}
+.legendDotDirect{background:var(--warn-fg)}
+.legendDotIndirect{background:var(--tertiary);border:1px solid var(--border-strong)}
+.inspector{margin-top:20px;border-top:1px solid var(--border);padding-top:18px;animation:reveal .3s var(--ease)}
+.inspectorHead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.inspectorHead strong{font-size:15px;font-weight:500}
+.inspectorHead button{background:transparent;border:0;color:var(--tertiary);cursor:pointer}
+.inspectorHead button:hover{color:var(--primary)}
+.pathChain{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.pathChainNode{display:flex;align-items:center;gap:8px;font-size:11px}
+.pathChainNode>span{border:1px solid var(--border-strong);background:var(--surface-raised);padding:6px 9px;border-radius:6px;color:var(--primary);font:10px ui-monospace,SFMono-Regular,Menlo,monospace}
+.pathChainNode small{color:var(--tertiary);font:9px ui-monospace,SFMono-Regular,Menlo,monospace}
+.changed{border-color:var(--danger-bd)!important;color:var(--danger-fg)!important;background:var(--danger-bg)!important}
+.reasonText{color:var(--secondary);font-size:14px;margin:0 0 14px;line-height:1.6}
+.evidenceList{display:grid;gap:8px;margin-top:8px}
+.evidenceCard{border:1px solid var(--border);background:var(--base);border-radius:7px;padding:10px 12px;display:grid;gap:4px}
+.evidenceRow{display:flex;justify-content:space-between;gap:12px;font-size:11px}
+.evidenceRow span{color:var(--tertiary);text-transform:capitalize}
+.evidenceRow code{color:var(--secondary);text-align:right;word-break:break-all}
+
+/* ---- Findings ---- */
+.finding{display:flex;gap:11px;padding:14px 0;border-top:1px solid var(--border)}
+.finding:first-of-type{border-top:0}
+.findingGroup{margin-top:6px}
+.findingGroupTitle{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--primary);letter-spacing:.08em;text-transform:uppercase;padding:16px 0 6px;border-top:1px solid var(--border)}
+.findingGroupTitle:first-child{border-top:0;padding-top:0}
+.findingGroupTitle small{color:var(--tertiary);margin-left:6px;text-transform:none;letter-spacing:0}
+.findingBody{display:grid;gap:5px}
+.findingHead{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.findingHead strong{font-weight:500;font-size:13px}
+.blockingTag{display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:4px;background:var(--danger-bg);color:var(--danger-fg);font:9px ui-monospace,SFMono-Regular,Menlo,monospace}
+.unknownTag{padding:2px 6px;border-radius:4px;background:var(--unknown-bg);color:var(--unknown-fg);font:9px ui-monospace,SFMono-Regular,Menlo,monospace}
+.findingMeta{display:flex;gap:12px;flex-wrap:wrap;color:var(--tertiary);font-size:10px}
+.findingMeta code{color:var(--secondary)}
+
+/* ---- Database rehearsal ---- */
+.schemaTable{display:grid;gap:0;margin:12px 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.schemaRow{display:grid;grid-template-columns:1.6fr .9fr 1.2fr 1.2fr;gap:10px;padding:10px 13px;font-size:13px;border-top:1px solid var(--border);align-items:center;color:var(--primary)}
+.schemaRow:first-child{border-top:0}
+.schemaHead{background:var(--surface-raised);color:var(--tertiary);font:10px ui-monospace,SFMono-Regular,Menlo,monospace;text-transform:uppercase;letter-spacing:.06em}
+.subKicker{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tertiary);letter-spacing:.08em;text-transform:uppercase;margin:18px 0 8px}
+.sqlBlock{background:var(--base);border:1px solid var(--border);border-radius:8px;padding:14px 16px;color:var(--secondary);font:12px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;overflow-x:auto;white-space:pre-wrap}
+.causalChainSmall{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:16px;color:var(--secondary);font-size:12px}
+
+/* ---- Rollback truth ---- */
+.timeline{display:grid;gap:10px;justify-items:center;margin:8px 0 20px}
+.timelineStage{display:grid;gap:6px;justify-items:center;text-align:center}
+.timelineLabel{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tertiary);letter-spacing:.08em;text-transform:uppercase}
+.timelineBox{border:1px solid var(--border-strong);background:var(--surface-raised);padding:10px 18px;border-radius:7px;font-size:13px;color:var(--primary)}
+.timelineArrow{color:var(--tertiary)}
+.rollbackGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.rollbackPill{display:flex;align-items:center;gap:8px;padding:12px 14px;border-radius:7px;font-size:12px;border:1px solid var(--unknown-bd);background:var(--unknown-bg);color:var(--unknown-fg)}
+.pillTone_danger{border-color:var(--danger-bd);background:var(--danger-bg);color:var(--danger-fg)}
+.pillTone_warn{border-color:var(--warn-bd);background:var(--warn-bg);color:var(--warn-fg)}
+.pillTone_safe{border-color:var(--safe-bd);background:var(--safe-bg);color:var(--safe-fg)}
+.pillTone_unknown{border-color:var(--unknown-bd);background:var(--unknown-bg);color:var(--unknown-fg)}
+.rollbackPill b{margin-left:auto}
+.failurePoint{border:1px solid var(--danger-bd);background:var(--danger-bg);border-radius:8px;padding:14px 16px;margin-bottom:16px;display:grid;gap:6px}
+.failurePoint p{margin:0;font-size:13px;color:var(--danger-fg);line-height:1.6}
+.failurePoint p code{color:#e8b0b0}
+.rollbackColumns{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.rollbackFinding{display:flex;gap:10px;padding:11px 0;border-top:1px solid var(--border)}
+.rollbackFinding:first-child{border-top:0}
+.rollbackFinding div{display:grid;gap:3px}
+.rollbackFinding strong{font-size:13px;font-weight:500}
+.rollbackFinding span{font-size:12px;color:var(--secondary);line-height:1.5}
+.rollbackFinding code{font-size:9px;color:var(--tertiary)}
+
+/* ---- API contract ---- */
+.apiChangeList{display:grid;gap:0;margin-top:8px}
+.apiChangeRow{display:flex;gap:11px;padding:12px 0;border-top:1px solid var(--border)}
+.apiChangeRow:first-child{border-top:0}
+.apiChangeRow div{display:grid;gap:3px}
+.apiChangeRow strong{font-size:13px;font-weight:500}
+.apiChangeRow span{font-size:13px;color:var(--secondary)}
+.apiChangeRow code{font-size:10px;color:var(--tertiary)}
+
+/* ---- Decision trace + evidence chain ---- */
+.traceList{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:0}
+.traceStep{display:grid;grid-template-columns:22px 16px 1fr auto;align-items:center;gap:10px;padding:11px 0;border-top:1px solid var(--border)}
+.traceStep:first-child{border-top:0}
+.traceIndex{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tertiary)}
+.traceStep div{display:grid;gap:2px}
+.traceStep strong{font-size:13px;font-weight:500}
+.traceStep span{font-size:12px;color:var(--secondary)}
+.traceStep em{font:9px ui-monospace,SFMono-Regular,Menlo,monospace;font-style:normal;letter-spacing:.05em}
+.traceOk{color:var(--safe-fg)}
+.traceWarn{color:var(--warn-fg)}
+/* Evidence chain rendered as a connected vertical flow, not a table. */
+.evidenceChainScroll{max-height:280px;overflow-y:auto;margin-top:10px;padding-right:4px}
+.chainStep{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:9px 0;font-size:12px;position:relative}
+.chainStep:not(:last-child){border-bottom:1px dashed var(--border)}
+.chainStep code{color:var(--primary);font-size:11px}
+.chainStep span{color:var(--tertiary)}
+.chainStep b{color:var(--primary);text-align:right;font-size:10px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.unknownBlock{display:flex;gap:8px;align-items:flex-start;margin-top:14px;padding:10px 12px;border-radius:7px;background:var(--warn-bg);border:1px solid var(--warn-bd);color:var(--warn-fg);font-size:12px}
+
+/* ---- AI explanation: visually subordinate to deterministic panels ---- */
+.explanation{border-style:dashed}
+.boundaryNote{font-size:12px;color:var(--tertiary);margin:0 0 16px;letter-spacing:.01em;line-height:1.5}
+.quote{font-size:16px;line-height:1.65;color:var(--primary)!important}
+.explainGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.explainGrid div{display:grid;gap:4px}
+.explainGrid b{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--secondary);letter-spacing:.06em;text-transform:uppercase}
+.explainGrid span{font-size:13px;color:var(--secondary);line-height:1.5}
+.claimList{margin-top:16px}
+.claimRow{display:flex;gap:9px;align-items:flex-start;padding:7px 0;font-size:13px;color:var(--secondary)}
+.remediation{border-top:1px solid var(--border);margin-top:20px;padding-top:16px;display:grid;gap:9px;font-size:13px}
+.remediation>b{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--secondary);letter-spacing:.06em;text-transform:uppercase}
+.remediation div{display:flex;gap:8px;line-height:1.5;color:var(--secondary)}
+.remediation span{height:min-content;padding:3px 6px;border-radius:4px;background:var(--unknown-bg);color:var(--secondary);font:9px ui-monospace,SFMono-Regular,Menlo,monospace}
+.aiTiming{margin-top:16px;color:var(--tertiary);font:10px ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* ---- Coverage ---- */
+.statGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin:8px 0 18px}
+.statCell{border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;display:grid;gap:3px}
+.statCell strong{font-size:22px;font-weight:600;color:var(--primary)}
+.statCell span{font-size:10px;color:var(--tertiary);text-transform:uppercase;letter-spacing:.05em}
+.coverageOk{display:flex;align-items:center;gap:8px;color:var(--safe-fg);font-size:13px;margin:0}
+.coverageWarn{display:flex;align-items:flex-start;gap:8px;color:var(--warn-fg);font-size:13px;margin:6px 0}
+.notesList{margin:14px 0 0;padding-left:18px;color:var(--tertiary);font-size:12px;line-height:1.65}
+
+/* ---- Counterfactual ---- */
+.ghostSmall{display:inline-flex;align-items:center;gap:7px;padding:10px 15px;border-radius:6px;border:1px solid var(--border-strong);background:transparent;color:var(--primary);font:11px ui-monospace,SFMono-Regular,Menlo,monospace;cursor:pointer;transition:border-color .18s var(--ease)}
+.ghostSmall:hover{border-color:rgba(255,255,255,.2)}
+.compareGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;animation:reveal .35s var(--ease)}
+.compareCard{border:1px solid var(--border);background:var(--base);border-radius:8px;padding:16px;display:grid;gap:7px}
+.compareCard span{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tertiary);letter-spacing:.04em}
+.compareCard strong{font-size:16px;font-weight:600}
+.compareCard b{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--secondary)}
+.tone_danger.compareCard,.compareCard.tone_danger{border-color:var(--danger-bd)}
+.compareVerdictLine{grid-column:1/-1;text-align:center;margin-top:6px;color:var(--secondary);font-size:13px;padding-top:14px;border-top:1px solid var(--border)}
+.compareVerdictLine b{color:var(--primary)}
+
+/* ---- Upload panel ---- */
+.uploadPanel{width:100%;max-width:520px;margin:22px auto 0;display:flex;flex-direction:column;gap:12px}
+.uploadDropzone{width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;padding:22px 18px;border:1px dashed var(--border-strong);border-radius:10px;background:transparent;color:var(--secondary);cursor:pointer;transition:border-color .18s var(--ease),color .18s var(--ease)}
+.uploadDropzone:hover:not(:disabled){border-color:rgba(255,255,255,.22);color:var(--primary)}
+.uploadDropzone span{font-size:13px;color:var(--primary)}
+.uploadDropzone small{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tertiary);letter-spacing:.03em}
+.uploadReady{display:flex;flex-direction:column;gap:10px;padding:16px;border:1px solid var(--border-strong);border-radius:10px;background:var(--surface)}
+.uploadReadyHead{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--primary);padding:14px 16px;border:1px solid var(--border-strong);border-radius:10px;background:var(--surface)}
+.uploadReadyHead small{color:var(--tertiary);font:10px ui-monospace,SFMono-Regular,Menlo,monospace}
+.uploadReadyHead button{margin-left:auto;background:transparent;border:0;color:var(--tertiary);cursor:pointer}
+.uploadCompareHint{font-size:12px;line-height:1.6;color:var(--secondary);margin:0}
+
+/* ---- Project manifest ---- */
+.manifestTree{display:grid;gap:0;margin-top:8px;max-height:340px;overflow-y:auto;border:1px solid var(--border);border-radius:8px}
+.manifestRow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:8px 12px;border-top:1px solid var(--border);font-size:11px}
+.manifestRow:first-child{border-top:0}
+.manifestRow code{color:var(--primary);overflow-wrap:anywhere}
+.manifestRow small{color:var(--tertiary);font:9px ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* ---- Capability matrix ---- */
+.capabilityGrid{display:grid;gap:0;margin-top:6px;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.capabilityRow{display:grid;grid-template-columns:20px 1fr auto;gap:12px;align-items:center;padding:12px 14px;border-top:1px solid var(--border)}
+.capabilityRow:first-child{border-top:0}
+.capabilityRow div{display:grid;gap:2px}
+.capabilityRow strong{font-size:12px;font-weight:600;letter-spacing:.03em}
+.capabilityRow span{font-size:12px;color:var(--secondary)}
+.capabilityRow em{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;font-style:normal;letter-spacing:.04em;white-space:nowrap}
+
+/* ---- Footer ---- */
+.footer{border-top:1px solid var(--border);padding:28px clamp(20px,5vw,72px);display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center;color:var(--tertiary);font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em}
+.footer>span:first-child{display:flex;align-items:center;gap:6px;color:var(--secondary);font-size:12px;letter-spacing:.02em}
+.footerLinks{display:flex;gap:6px;align-items:center;color:var(--tertiary)}
+.footerLinks a{color:var(--tertiary);text-decoration:none}
+.footerLinks a:hover{color:var(--primary)}
+
+.spin{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---- Responsive: verdict dominates on phone, deeper analysis follows ---- */
+@media(max-width:680px){
+  .header{height:56px}
+  .navLinks{display:none}
+  .hero{padding-top:64px;padding-bottom:64px}
+  .hero p{font-size:15px}
+  .actions{display:grid;width:100%}
+  .actions button{width:100%}
+  .heroRule{margin-top:40px;gap:10px;font-size:9px}
+  .heroRule span{padding-right:10px}
+  .sectionHead{align-items:flex-start;gap:13px;padding-top:36px}
+  .caseBadge{font-size:9px;text-align:right}
+  .verdictBlock{flex-direction:column;align-items:flex-start;padding:24px}
+  .scoreBlock{align-self:flex-start}
+  .scoreBlock strong{font-size:56px}
+  .decisionText{font-size:38px}
+  .grid{grid-template-columns:1fr}
+  .metaRow{gap:12px;font-size:9px}
+  .rollbackColumns,.rollbackGrid,.explainGrid,.compareGrid{grid-template-columns:1fr}
+  .schemaRow{grid-template-columns:1.4fr .8fr;row-gap:4px}
+  .schemaRow>span:nth-child(3),.schemaRow>span:nth-child(4){font-size:10px;color:var(--secondary)}
+  .traceStep{grid-template-columns:18px 14px 1fr}
+  .panel{padding:18px}
+  .footer{flex-direction:column}
+  .risk{grid-template-columns:1fr 1.2fr 32px}
+  .graphFlow{gap:16px}
+  .graphColumn{min-width:150px}
+  .scenarioSwitch{flex-direction:column}
+  .scenarioButton{justify-content:center}
+}
+
+/* ==========================================================================
+   P0.5 — Evidence graph. The visual hero: precise lines, near-black canvas,
+   one accent per state. Motion communicates causality and nothing else.
+   ========================================================================== */
+.graphToolbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:4px 0 18px}
+.convergenceBadge{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border:1px solid var(--warn-bd);background:var(--warn-bg);color:var(--warn-fg);border-radius:5px;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em}
+.graphScroll{overflow-x:auto;overflow-y:hidden;margin:0 -4px;padding:0 4px 8px}
+.graphSvg{display:block;color:var(--tertiary)}
+.graphColumnLabel{fill:var(--tertiary);font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em;transition:opacity .5s var(--ease)}
+
+.graphEdge{fill:none;stroke:var(--secondary);stroke-width:1;transition:opacity .55s var(--ease),stroke .18s var(--ease)}
+
+.graphNode{cursor:pointer;transition:opacity .5s var(--ease)}
+.graphNode:focus-visible{outline:none}
+.graphNode:focus-visible .graphNodeBox{stroke:var(--safe-fg);stroke-width:1.5}
+.graphNodeBox{fill:var(--surface-raised);stroke:var(--border-strong);stroke-width:1;transition:stroke .18s var(--ease),fill .18s var(--ease)}
+.graphNode:hover .graphNodeBox{stroke:rgba(255,255,255,.2)}
+.graphNodeSelected{stroke:var(--primary);stroke-width:1.5}
+.graphNodeKind{fill:var(--tertiary);font:9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em}
+.graphNodeLabel{fill:var(--primary);font:13px -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif}
+.graphTone_danger .graphNodeBox,.graphTone_danger{stroke:var(--danger-bd)}
+.graphTone_warn .graphNodeBox,.graphTone_warn{stroke:var(--warn-bd)}
+.graphTone_safe .graphNodeBox,.graphTone_safe{stroke:var(--safe-bd)}
+.graphDimmed{opacity:.14!important}
+
+.graphTextChain{margin-top:18px;border-top:1px solid var(--border);padding-top:14px}
+.graphTextChain summary{cursor:pointer;color:var(--secondary);font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase}
+.graphTextChain ol{margin:12px 0 0;padding-left:20px;color:var(--secondary);font-size:13px;line-height:1.7}
+.graphTextChain p{color:var(--secondary);font-size:13px;line-height:1.7;margin:8px 0 0}
+
+/* ---- Evidence inspector ---- */
+.inspector{margin-top:20px;border:1px solid var(--border-strong);border-radius:9px;background:var(--surface-raised);padding:18px}
+.inspectorHead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.inspectorHead strong{display:block;margin-top:5px;font-size:17px;font-weight:500;letter-spacing:-.01em}
+.inspectorHead button{background:transparent;border:0;color:var(--tertiary);cursor:pointer;padding:2px}
+.inspectorHead button:hover{color:var(--primary)}
+.inspectorDetail{color:var(--secondary);font-size:14px;line-height:1.65;margin:12px 0 0}
+.provenanceRow{display:grid;gap:6px;padding:12px 0;border-top:1px solid var(--border)}
+.provenanceFile{color:var(--primary);font-size:12px}
+.provenanceSnippet{margin:0;padding:10px 12px;background:var(--base);border:1px solid var(--border);border-radius:6px;color:var(--secondary);font-size:12px;line-height:1.55;overflow-x:auto;white-space:pre-wrap;word-break:break-word}
+.provenanceSummary{color:var(--tertiary);font-size:12px;line-height:1.6}
+
+@media(max-width:720px){
+  .graphToolbar{flex-direction:column;align-items:stretch}
+  .inspector{padding:14px}
+}
+
+/* ==========================================================================
+   P0.6 / P0.7 — verdict, graph intelligence, evidence viewer, manifest.
+   Same token set; no new colors introduced. State is encoded by accent and
+   typography, never by decoration.
+   ========================================================================== */
+
+/* ---- Verdict: the most important object on the page ---- */
+.verdict{display:grid;grid-template-columns:1fr auto;grid-template-areas:"main score" "identity identity";gap:28px 40px;align-items:center;padding:clamp(32px,5vw,52px) clamp(24px,4vw,48px);border:1px solid var(--border-strong);border-radius:14px;background:var(--surface);margin-bottom:56px;position:relative;overflow:hidden}
+.verdict::before{content:"";position:absolute;inset:0 auto 0 0;width:2px;background:var(--border-strong)}
+.verdictTone_danger::before{background:var(--danger-fg)}
+.verdictTone_safe::before{background:var(--safe-fg)}
+.verdictTone_warn::before{background:var(--warn-fg)}
+.verdictTone_unknown::before{background:var(--secondary)}
+.verdictMain{grid-area:main;min-width:0}
+.verdictHeadline{margin:10px 0 0;font-size:clamp(30px,4.5vw,46px);font-weight:600;letter-spacing:-.025em;line-height:1.05}
+.verdictTone_danger .verdictHeadline{color:var(--danger-fg)}
+.verdictTone_safe .verdictHeadline{color:var(--safe-fg)}
+.verdictTone_warn .verdictHeadline{color:var(--warn-fg)}
+.verdictSub{margin:14px 0 0;color:var(--secondary);font-size:15px;line-height:1.6;max-width:60ch}
+.verdictScore{grid-area:score;text-align:right}
+.riskNumber{font-size:clamp(56px,9vw,92px);font-weight:600;letter-spacing:-.045em;line-height:.9;font-variant-numeric:tabular-nums}
+.verdictTone_danger .riskNumber{color:var(--danger-fg)}
+.verdictTone_safe .riskNumber{color:var(--safe-fg)}
+.verdictTone_warn .riskNumber{color:var(--warn-fg)}
+.riskLabel{margin-top:10px;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.16em;color:var(--tertiary)}
+.identityRow{grid-area:identity;display:flex;gap:36px;flex-wrap:wrap;margin:0;padding-top:24px;border-top:1px solid var(--border)}
+.identityRow dt{font:9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.16em;color:var(--tertiary);cursor:help}
+.identityRow dd{margin:6px 0 0;display:flex;align-items:center;gap:8px}
+.identityRow code{font-size:12px;color:var(--secondary)}
+.identityRow button{background:transparent;border:0;color:var(--tertiary);cursor:pointer;display:flex;padding:2px;transition:color .18s var(--ease)}
+.identityRow button:hover{color:var(--primary)}
+
+/* ---- Graph shell ---- */
+.graphPanel{border:1px solid var(--border);background:var(--surface);border-radius:12px;padding:clamp(20px,3vw,30px)}
+.graphHead{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.graphTitle{margin:8px 0 0;font-size:15px;font-weight:400;color:var(--secondary);letter-spacing:-.01em}
+.graphActions{display:flex;gap:10px}
+.pillButton{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:6px;border:1px solid var(--border-strong);background:transparent;color:var(--secondary);font:11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.04em;cursor:pointer;transition:color .18s var(--ease),border-color .18s var(--ease),background .18s var(--ease),transform .12s var(--ease)}
+.pillButton:hover:not(:disabled){color:var(--primary);border-color:rgba(255,255,255,.18)}
+.pillButton:active:not(:disabled){transform:scale(.97)}
+.pillButton:disabled{opacity:.4;cursor:not-allowed}
+.pillButtonActive{background:var(--primary);border-color:var(--primary);color:var(--base)}
+.graphFilterRow{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.graphFilterLabel{font:9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.16em;color:var(--tertiary);margin-right:4px}
+
+/* ---- Convergence ---- */
+.convergenceBanner{display:flex;align-items:center;gap:11px;width:100%;text-align:left;padding:13px 16px;margin-bottom:18px;border:1px solid var(--warn-bd);background:var(--warn-bg);color:var(--warn-fg);border-radius:8px;font-size:13px;cursor:pointer;transition:border-color .18s var(--ease)}
+.convergenceBanner:hover{border-color:rgba(203,178,122,.4)}
+.convergenceBanner b{letter-spacing:.1em;font-size:10px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.convergenceDetail{padding:18px;margin-bottom:18px;border:1px solid var(--border-strong);border-radius:8px;background:var(--surface-raised)}
+.convergenceDetail p{margin:10px 0 16px;font-size:13px;line-height:1.65}
+.convergenceItem{display:grid;gap:14px;padding-top:14px;border-top:1px solid var(--border)}
+.convergenceShared code,.convergenceCauses code{display:block;margin-top:5px;color:var(--primary);font-size:12px}
+.convergenceCauses{display:flex;gap:32px;flex-wrap:wrap}
+.convergenceDot{fill:var(--warn-fg)}
+
+/* ---- Evidence gap (UNKNOWN / UNSUPPORTED) ---- */
+.gapLede{margin:0 0 26px;color:var(--secondary);font-size:15px;line-height:1.65;max-width:68ch}
+.gapChain{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.gapStage{display:flex;align-items:center;gap:16px;padding:16px 0;border-top:1px solid var(--border)}
+.gapMarker{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;border:1px dashed var(--border-strong);color:var(--tertiary);font:11px ui-monospace,SFMono-Regular,Menlo,monospace;flex-shrink:0}
+.gapMarker_safe{border-style:solid;border-color:var(--safe-bd);color:var(--safe-fg)}
+.gapMarker_danger{border-style:solid;border-color:var(--danger-bd);color:var(--danger-fg)}
+.gapMarker_warn{border-color:var(--warn-bd);color:var(--warn-fg)}
+.gapMarker_unknown{border-color:var(--border-strong)}
+.gapBody{flex:1;min-width:0}
+.gapLabel{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em;color:var(--primary)}
+.gapDetail{margin-top:5px;color:var(--tertiary);font-size:13px;line-height:1.55}
+.gapStage em{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;font-style:normal;flex-shrink:0}
+
+/* ---- Inspector / source evidence ---- */
+.causalPath{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:0}
+.causalPath li{position:relative;padding:9px 0 9px 20px;font-size:12px}
+.causalPath li::before{content:"";position:absolute;left:4px;top:0;bottom:0;width:1px;background:var(--border-strong)}
+.causalPath li:first-child::before{top:50%}
+.causalPath li:last-child::before{bottom:50%}
+.causalPath li::after{content:"";position:absolute;left:1px;top:calc(50% - 3px);width:7px;height:7px;border-radius:50%;background:var(--tertiary)}
+.causalPath code{color:var(--secondary)}
+.evidenceHead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:22px}
+.evidenceNav{display:flex;align-items:center;gap:8px}
+.evidenceNav button{background:transparent;border:1px solid var(--border-strong);border-radius:4px;color:var(--secondary);cursor:pointer;display:flex;padding:3px}
+.evidenceNav button:disabled{opacity:.3;cursor:not-allowed}
+.evidenceCount{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tertiary)}
+.analyzerBadge{padding:3px 8px;border:1px solid var(--border-strong);border-radius:4px;font:9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;color:var(--secondary)}
+.evidenceFile{margin-top:12px;font-size:11px;color:var(--tertiary);display:flex;flex-wrap:wrap;align-items:center}
+.evidenceFile code{color:var(--secondary)}
+.crumbSep{font-style:normal;margin:0 6px;color:var(--tertiary)}
+.evidenceCode{display:flex;margin-top:10px;border:1px solid var(--border-strong);border-radius:7px;overflow:hidden;background:var(--base)}
+.evidenceLineNo{padding:12px 12px;min-width:44px;text-align:right;background:rgba(255,255,255,.02);color:var(--tertiary);font:11px ui-monospace,SFMono-Regular,Menlo,monospace;border-right:1px solid var(--border);flex-shrink:0}
+.evidenceLine{margin:0;padding:12px 14px;color:var(--primary);font-size:12px;line-height:1.5;overflow-x:auto;white-space:pre-wrap;word-break:break-word;flex:1}
+.evidenceMeta{display:grid;grid-template-columns:auto 1fr;gap:7px 18px;margin:14px 0 0}
+.evidenceMeta dt{font:9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em;color:var(--tertiary)}
+.evidenceMeta dd{margin:0;font-size:12px;color:var(--secondary);word-break:break-word}
+.evidenceSummary{margin:14px 0 0;color:var(--tertiary);font-size:12px;line-height:1.6}
+
+/* ---- Manifest ---- */
+.manifestBar{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:18px 22px;border:1px solid var(--border);border-radius:10px;background:var(--surface);margin-bottom:56px}
+.manifestStats{display:flex;gap:36px;flex-wrap:wrap}
+.manifestStats div{display:flex;flex-direction:column;gap:5px}
+.manifestStats b{font-size:20px;font-weight:500;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.manifestStats span{font:9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em;color:var(--tertiary)}
+.drawerScrim{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;display:flex;justify-content:flex-end;animation:scrimIn .2s var(--ease)}
+@keyframes scrimIn{from{opacity:0}to{opacity:1}}
+.drawer{width:min(560px,100%);height:100%;background:var(--surface);border-left:1px solid var(--border-strong);display:flex;flex-direction:column;animation:drawerIn .32s var(--ease)}
+@keyframes drawerIn{from{transform:translateX(24px);opacity:0}to{transform:none;opacity:1}}
+.drawerHead{display:flex;justify-content:space-between;align-items:flex-start;padding:24px;border-bottom:1px solid var(--border)}
+.drawerHead strong{display:block;margin-top:6px;font-size:17px;font-weight:500}
+.drawerHead button{background:transparent;border:0;color:var(--tertiary);cursor:pointer}
+.drawerHead button:hover{color:var(--primary)}
+.drawerFilters{display:flex;gap:8px;flex-wrap:wrap;padding:16px 24px;border-bottom:1px solid var(--border)}
+.drawerList{flex:1;overflow-y:auto;padding:8px 24px 24px}
+.manifestRow{padding:13px 0;border-bottom:1px solid var(--border)}
+.manifestPath{font-size:12px;color:var(--primary);word-break:break-all}
+.manifestMeta{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tertiary)}
+.manifestReason{margin:7px 0 0;font-size:11px;color:var(--tertiary);line-height:1.55}
+
+/* ---- Graph edge emphasis ---- */
+.graphEdgeLive{stroke:var(--primary)}
+
+@media(max-width:760px){
+  .verdict{grid-template-columns:1fr;grid-template-areas:"main" "score" "identity";gap:24px}
+  .verdictScore{text-align:left}
+  .identityRow{gap:24px}
+  .manifestStats{gap:24px}
+  .drawer{width:100%}
+}
+
+/* ==========================================================================
+   P0.8 — visual forensics fixes, driven by rendered-screenshot inspection.
+   ========================================================================== */
+
+/* Anchor the post-analysis scroll just above the report. */
+.reportAnchor{scroll-margin-top:80px}
+
+/* Band labels for the two-layer graph. */
+.graphBandLabel{fill:var(--secondary);font:9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.2em}
+
+/* The graph SVG must never force the page to scroll sideways; it scrolls
+   inside its own container only. */
+.graphScroll{overflow-x:auto;overflow-y:hidden;margin:0 -4px;padding:0 4px 8px;max-width:100%}
+.graphSvg{display:block;color:var(--tertiary);max-width:100%;height:auto}
+
+/* Cross-band edges read as the hand-off from impact to consequence. */
+.graphEdgeCross{stroke-dasharray:3 4}
+
+/* Verdict: root cause is the lede, counts are secondary. */
+.verdictCounts{margin:10px 0 0;color:var(--tertiary);font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em}
+
+/* Section entrance — presentation only, and disabled under reduced motion. */
+.reveal{opacity:0;transform:translateY(10px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.revealed{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+}
+
+/* Mobile: the scenario switcher rendered as a glaring full-width white bar. */
+@media(max-width:760px){
+  .scenarioSwitch{flex-direction:column}
+  .scenarioButton{justify-content:center;width:100%}
+  .scenarioButtonActive{background:var(--surface-raised);border-color:var(--border-strong);color:var(--primary)}
+  .uploadPanel .scenarioButton{width:100%}
+  .graphHead{flex-direction:column;align-items:stretch;gap:14px}
+  .graphActions{width:100%}
+  .graphActions .pillButton{width:100%;justify-content:center}
+  .hero{padding-top:clamp(48px,10vw,88px)}
+}
+
+/* Hero: the dropzone was competing with the primary CTA. Recede it until the
+   compare/upload mode is deliberately chosen. */
+.uploadPanel{margin-top:28px}
+.uploadDropzone{padding:18px 18px}
+.uploadDropzone span{font-size:12.5px}
+
+/* P0.8 fix: :hover set color to --primary, which on the active (white)
+   background produced white-on-white text. Confirmed by computed style
+   (color and background both rgb(245,245,247)). */
+.pillButtonActive:hover:not(:disabled){color:var(--base);border-color:var(--primary)}
+
+/* Ordered "why this decision" chain. Dimming alone is not enough: on a
+   typical graph the entire node set IS the verdict ancestry, so nothing
+   visibly changes. The ordered steps are the real explanation. */
+.whyPanel{margin:0 0 20px;padding:20px;border:1px solid var(--border-strong);border-radius:9px;background:var(--surface-raised)}
+.whyPanel h4{margin:8px 0 16px;font-size:16px;font-weight:500;letter-spacing:-.01em}
+.whySteps{list-style:none;margin:0;padding:0;counter-reset:why}
+.whyStep{position:relative;display:grid;grid-template-columns:26px 1fr;gap:14px;padding:11px 0;border-top:1px solid var(--border)}
+.whyStep:first-child{border-top:0}
+.whyIndex{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tertiary);padding-top:3px}
+.whyKind{font:9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em;color:var(--tertiary)}
+.whyLabel{margin-top:4px;font-size:14px;color:var(--primary)}
+.whyDetail{margin-top:4px;font-size:12px;color:var(--secondary);line-height:1.55}
+
+/* P0.8 fix — mobile horizontal overflow.
+   Measured at 390px: documentElement.scrollWidth was 727px, with
+   .commandCenter reporting a 707px box. Grid items default to
+   min-width:auto, so they refuse to shrink below their content's
+   min-content width and drag the whole page wider than the viewport.
+   Constraining the report's children fixes every downstream offender. */
+.report{min-width:0}
+.report > *{min-width:0;max-width:100%}
+.commandCenter{min-width:0}
+.metaRow{flex-wrap:wrap}
+.scenarioFixture{overflow-wrap:anywhere}
+.scenarioFixture code{overflow-wrap:anywhere}
+
+@media(max-width:760px){
+  /* The long fixture SQL and hashes must wrap rather than extend the page. */
+  .metaRow{gap:10px 16px}
+  .metaRow code{overflow-wrap:anywhere}
+  .verdictSub{max-width:100%}
+  .identityRow code{overflow-wrap:anywhere}
+}
+
+/* ==========================================================================
+   P0.9 — productization: reveal system, judge mode, upload lifecycle,
+   policy-junction honesty. One motion language; no new palette.
+   ========================================================================== */
+
+/* ---- Section rhythm: typography and spacing create hierarchy, not cards. */
+.section{margin:0}
+.section + .section{margin-top:8px}
+
+/* ---- Reveal (wired to IntersectionObserver in hooks/useReveal.ts) ------- */
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.revealed{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+}
+
+/* ---- Judge mode -------------------------------------------------------- */
+.judgeToggle{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:6px;border:1px solid var(--border-strong);background:transparent;color:var(--secondary);font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:color .18s var(--ease),border-color .18s var(--ease),background .18s var(--ease),transform .12s var(--ease)}
+.judgeToggle:hover{color:var(--primary);border-color:rgba(255,255,255,.18)}
+.judgeToggle:active{transform:scale(.97)}
+.judgeToggleActive{background:var(--primary);border-color:var(--primary);color:var(--base)}
+.judgeToggleActive:hover{color:var(--base);border-color:var(--primary)}
+/* More air between the few sections judge mode keeps. */
+.judgeMode .section + .section{margin-top:26px}
+.judgeMode .verdict{margin-bottom:64px}
+.judgeFootnote{margin:56px 0 0;padding-top:22px;border-top:1px solid var(--border);color:var(--tertiary);font-size:12px;line-height:1.65;max-width:70ch}
+
+/* ---- Loading: real stage list, no fabricated percentage ---------------- */
+.loadingPanel{border:1px solid var(--border);background:var(--surface);border-radius:12px;padding:clamp(28px,4vw,44px)}
+.loadingPanel .stagedList{margin:20px 0 0;max-width:none}
+.loadingPanel .emptyNote{margin:22px 0 0;color:var(--tertiary);font-size:12px;line-height:1.6;max-width:66ch}
+
+/* ---- Policy junction: aggregation stated, not implied ------------------ */
+.policyJunction circle{fill:var(--tertiary)}
+.policyJunctionLabel{fill:var(--tertiary);font:8px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em}
+
+/* ---- Graph node tooltip for labels that truncate ----------------------- */
+.graphNodeLabel{pointer-events:none}
+.graphNode:focus-visible .graphNodeBox{stroke:var(--safe-fg);stroke-width:1.6}
+
+@media(max-width:760px){
+  .judgeToggle{padding:6px 10px}
+  .judgeFootnote{margin-top:36px}
+  .loadingPanel{padding:22px}
+}
+
+/* Hover emphasis: recede, do not erase. Full .graphDimmed (.14) made a
+   casual mouse-over hide most of the graph. */
+.graphSoftDimmed{opacity:.42}
+.judgeMode .workspace{padding-top:24px}
+
+/* ---- Counterfactual: two real runs, either adoptable -------------------- */
+.cfGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.cfCard{display:grid;gap:7px;text-align:left;padding:20px;border:1px solid var(--border-strong);border-radius:10px;background:var(--surface-raised);cursor:pointer;transition:border-color .2s var(--ease),transform .14s var(--ease),background .2s var(--ease)}
+.cfCard:hover{border-color:rgba(255,255,255,.2)}
+.cfCard:active{transform:scale(.995)}
+.cfCardActive{border-color:var(--primary)}
+.cfTone_danger{border-left:2px solid var(--danger-bd)}
+.cfTone_safe{border-left:2px solid var(--safe-bd)}
+.cfTone_warn{border-left:2px solid var(--warn-bd)}
+.cfTone_unknown{border-left:2px solid var(--border-strong)}
+.cfLabel{display:flex;align-items:center;gap:6px;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;color:var(--tertiary)}
+.cfDecision{font-size:19px;font-weight:500;letter-spacing:-.015em}
+.cfTone_danger .cfDecision{color:var(--danger-fg)}
+.cfTone_safe .cfDecision{color:var(--safe-fg)}
+.cfScore{font-size:34px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.cfMeta{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tertiary)}
+.cfAction{margin-top:6px;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;color:var(--secondary)}
+.cfCardActive .cfAction{color:var(--tertiary)}
+.cfNote{margin:16px 0 0;color:var(--tertiary);font-size:12px;line-height:1.65;max-width:74ch}
+
+/* Nodes unique to a newly-adopted analysis enter; shared nodes hold position. */
+.graphNodeEntering{animation:nodeEnter .5s var(--ease) both}
+@keyframes nodeEnter{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.graphNodeEntering{animation:none}}
+
+@media(max-width:760px){.cfGrid{grid-template-columns:1fr}}

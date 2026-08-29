@@ -1,0 +1,27 @@
+:root{
+  /* Core editorial canvas */
+  --base:#050505;
+  --surface:#0b0b0d;
+  --surface-raised:#0e0e11;
+  --primary:#f5f5f7;
+  --secondary:#86868b;
+  --tertiary:#5b5b60;
+  --border:rgba(255,255,255,.04);
+  --border-strong:rgba(255,255,255,.08);
+  --ease:cubic-bezier(0.2,0.9,0.2,1);
+
+  /* State — restrained, not neon */
+  --safe-fg:#8ec28e;--safe-bg:rgba(110,168,110,.08);--safe-bd:rgba(110,168,110,.22);
+  --danger-fg:#d68080;--danger-bg:rgba(200,90,90,.09);--danger-bd:rgba(200,90,90,.24);
+  --warn-fg:#cbb27a;--warn-bg:rgba(203,178,122,.08);--warn-bd:rgba(203,178,122,.22);
+  --unknown-fg:var(--secondary);--unknown-bg:rgba(255,255,255,.03);--unknown-bd:var(--border-strong);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--base);color:var(--primary);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button,input{font-family:inherit}
+button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--safe-fg);outline-offset:3px;border-radius:2px}
+::selection{background:var(--primary);color:var(--base)}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.visuallyHidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}

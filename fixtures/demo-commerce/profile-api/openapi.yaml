@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: ProfileAPI
+  version: "1.0"
+  description: >
+    Demo Commerce ProfileAPI contract fixture. Mirrors
+    fixtures/demo-commerce/profile-api/src/profile_api.py's ProfileResponse.
+paths:
+  /profile/{user_id}:
+    get:
+      operationId: getProfile
+      summary: Fetch a user profile, including phone_number.
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: The requested user profile.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - user_id
+                  - name
+                  - email
+                properties:
+                  user_id:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  phone_number:
+                    type: string
+                    nullable: true
+components: {}

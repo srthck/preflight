@@ -1,0 +1,38 @@
+openapi: 3.0.0
+info:
+  title: ComplianceAPI
+  version: "1.0"
+  description: >
+    Fleet Ops compliance contract fixture. Mirrors
+    fixtures/fleet-ops/compliance-api/src/compliance_api.py's ComplianceRecord.
+paths:
+  /compliance/{driver_id}:
+    get:
+      operationId: getCompliance
+      summary: Fetch a driver's dispatch and audit compliance status.
+      parameters:
+        - name: driver_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: The requested compliance record.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - driver_id
+                  - depot_code
+                properties:
+                  driver_id:
+                    type: integer
+                  depot_code:
+                    type: string
+                  licence_valid:
+                    type: boolean
+                  medical_valid:
+                    type: boolean
+components: {}
