@@ -1,7 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="7" fill="#f5f5f7"/>
+  <!-- Brand stamp: cobalt violet rgb(73,79,223) on an 8px-scale rounded
+       square, white glyph. Matches .mark in page.module.css. -->
+  <rect width="32" height="32" rx="8" fill="rgb(73,79,223)"/>
   <path d="M16 6.5 L24.5 10 v6.5 c0 5-3.6 8.4-8.5 9.5 -4.9-1.1-8.5-4.5-8.5-9.5 V10 Z"
-        fill="none" stroke="#050505" stroke-width="2.1" stroke-linejoin="round"/>
-  <path d="M12.2 16.2 l2.9 2.9 5-5.6" fill="none" stroke="#050505"
+        fill="none" stroke="rgb(255,255,255)" stroke-width="2.1" stroke-linejoin="round"/>
+  <path d="M12.2 16.2 l2.9 2.9 5-5.6" fill="none" stroke="rgb(255,255,255)"
         stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

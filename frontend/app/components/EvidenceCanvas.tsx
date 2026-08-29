@@ -412,9 +412,14 @@ export function EvidenceCanvas({
                     does not report which feature triggered which rule.
                   </title>
                 </circle>
+                {/* Lifted clear of the node row: at -12 the centred label
+                    ran across the first policy node's box and swallowed its
+                    kind label. -34 puts it in the gap between rows, and the
+                    halo in .policyJunctionLabel covers the remaining cases
+                    where a denser graph closes that gap. */}
                 <text
                   x={layout.policyJunction.x}
-                  y={layout.policyJunction.y - 12}
+                  y={layout.policyJunction.y - 34}
                   textAnchor="middle"
                   className={styles.policyJunctionLabel}
                 >
