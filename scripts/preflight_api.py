@@ -292,7 +292,7 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    host = os.environ.get("HOST", "127.0.0.1")
+    host = os.environ.get("HOST", "0.0.0.0")
     port = int(os.environ.get("PORT", sys.argv[1] if len(sys.argv) > 1 else "8000"))
     print(f"PreFlight API listening on http://{host}:{port}")
     ThreadingHTTPServer((host, port), Handler).serve_forever()
