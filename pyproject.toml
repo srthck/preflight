@@ -29,7 +29,7 @@ dependencies = [
     "tree-sitter-python>=0.23,<0.24",
     "tree-sitter-kotlin>=1.0",
     "sqlglot>=30.0,<31.0",
-]
+"PyYAML>=6.0,<7.0",]
 
 [project.optional-dependencies]
 dev = [
